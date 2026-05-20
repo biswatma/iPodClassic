@@ -51,6 +51,9 @@ class IpodAppController {
     // 5. Initialize backlight
     this.resetBacklightTimer();
 
+    // 6. Setup instruction panel toggle
+    this.setupInstructionToggle();
+
     console.log("iPod Classic app successfully initialized.");
   }
 
@@ -446,6 +449,30 @@ class IpodAppController {
       screen.classList.remove('backlight-off');
     }
     this.resetBacklightTimer();
+  }
+
+  // Bind instruction modal handlers
+  setupInstructionToggle() {
+    const infoToggle = document.getElementById('info-toggle');
+    const instructionClose = document.getElementById('instruction-close');
+    const instructionPanel = document.getElementById('instruction-panel');
+    const backdrop = document.getElementById('modal-backdrop');
+
+    if (!infoToggle || !instructionPanel || !backdrop) return;
+
+    const show = () => {
+      instructionPanel.classList.add('active');
+      backdrop.classList.add('active');
+    };
+
+    const hide = () => {
+      instructionPanel.classList.remove('active');
+      backdrop.classList.remove('active');
+    };
+
+    infoToggle.addEventListener('click', show);
+    if (instructionClose) instructionClose.addEventListener('click', hide);
+    backdrop.addEventListener('click', hide);
   }
 }
 

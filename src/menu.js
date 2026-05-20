@@ -6,6 +6,7 @@ import { audioEngine } from './audio.js';
 
 class IpodMenuEngine {
   constructor() {
+    this.userHasManuallySetTheme = false; // flag to disable automatic prefers-color-scheme once user customized theme
     this.historyStack = []; // stores { menuNode, selectedIndex }
     this.currentMenu = null;
     this.selectedIndex = 0;
@@ -190,7 +191,12 @@ class IpodMenuEngine {
               <strong>Version:</strong> 1.0.3 Web Retro<br>
               <strong>Songs:</strong> ${audioEngine.getTracks().length}<br>
               <strong>Serial No:</strong> 8U6041H9Z2U<br><br>
-              <div style="text-align: center; color: #ef4444; font-weight: 700;">🍎 Designed by Apple in California</div>
+              <div style="display: flex; align-items: center; justify-content: center; gap: 4px; color: #374151; font-weight: 600; margin-top: 10px;">
+                <svg viewBox="0 0 24 24" width="12" height="12" fill="#374151" style="vertical-align: middle;">
+                  <path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/>
+                </svg>
+                Designed by Apple in California
+              </div>
             </div>
           `;
         }
@@ -210,6 +216,37 @@ class IpodMenuEngine {
   init() {
     this.currentMenu = this.menuRoot;
     this.selectedIndex = 0;
+
+    // Detect and apply system dark/light mode preference on startup
+    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const chassis = document.getElementById('ipod');
+    if (chassis) {
+      chassis.className = 'ipod-chassis'; // reset
+      if (prefersDark) {
+        chassis.classList.add('theme-black');
+      } else {
+        chassis.classList.add('theme-silver');
+      }
+    }
+
+    // Monitor live system dark/light mode preference changes (if user didn't override manually)
+    if (window.matchMedia) {
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+        if (!this.userHasManuallySetTheme) {
+          const c = document.getElementById('ipod');
+          if (c) {
+            c.className = 'ipod-chassis';
+            if (e.matches) {
+              c.classList.add('theme-black');
+            } else {
+              c.classList.add('theme-silver');
+            }
+            this.renderCurrentMenu();
+          }
+        }
+      });
+    }
+
     this.renderCurrentMenu();
     this.startGlobalClock();
   }
@@ -454,6 +491,7 @@ class IpodMenuEngine {
       // Theme switching
       const chassis = document.getElementById('ipod');
       if (chassis) {
+        this.userHasManuallySetTheme = true; // Suspend auto system dark-mode matching on user manual override
         chassis.className = 'ipod-chassis'; // reset
         if (action === 'theme-silver') chassis.classList.add('theme-silver');
         if (action === 'theme-black') chassis.classList.add('theme-black');

@@ -3,20 +3,24 @@
    ========================================================================== */
 
 :root {
-  --chassis-bg-silver: radial-gradient(circle at 50% 30%, #f3f3f3 0%, #e2e2e2 45%, #cccccc 85%, #b1b1b1 100%);
-  --chassis-bg-black: radial-gradient(circle at 50% 30%, #3a3a3a 0%, #2b2b2b 45%, #1c1c1c 85%, #0f0f0f 100%);
+  --chassis-bg-silver: 
+    radial-gradient(ellipse at 50% 15%, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0) 65%),
+    linear-gradient(135deg, #f0f1f3 0%, #e2e4e7 15%, #c8ccd0 45%, #b1b5ba 70%, #d0d3d8 85%, #eceef0 100%);
+  --chassis-bg-black: 
+    radial-gradient(ellipse at 50% 15%, rgba(255, 255, 255, 0.18) 0%, rgba(255, 255, 255, 0) 65%),
+    linear-gradient(135deg, #3c4048 0%, #2b2d32 20%, #1e1f23 45%, #151619 70%, #24262b 85%, #34373f 100%);
   --chassis-bg-u2: radial-gradient(circle at 50% 30%, #252525 0%, #161616 50%, #0d0d0d 85%, #050505 100%);
 
-  --wheel-bg-silver: radial-gradient(circle at 50% 50%, #ffffff 0%, #f9f9f9 50%, #ececec 100%);
-  --wheel-bg-black: radial-gradient(circle at 50% 50%, #222222 0%, #1c1c1c 50%, #121212 100%);
+  --wheel-bg-silver: radial-gradient(circle at 50% 50%, #ffffff 0%, #fbfbfb 60%, #f3f3f3 100%);
+  --wheel-bg-black: radial-gradient(circle at 50% 50%, #242426 0%, #1c1c1e 65%, #121214 100%);
   --wheel-bg-u2: radial-gradient(circle at 50% 50%, #f31c26 0%, #dc0f17 50%, #be060d 100%);
 
   --wheel-text-silver: #8a8a8f;
-  --wheel-text-black: #8e8e93;
+  --wheel-text-black: #a1a1aa;
   --wheel-text-u2: #ffffff;
 
-  --center-btn-silver: linear-gradient(135deg, #f0f0f0 0%, #d4d4d8 50%, #a1a1aa 100%);
-  --center-btn-black: linear-gradient(135deg, #3f3f46 0%, #27272a 50%, #18181b 100%);
+  --center-btn-silver: radial-gradient(circle at 35% 35%, #ffffff 0%, #e4e4e7 40%, #a1a1aa 80%, #71717a 100%);
+  --center-btn-black: radial-gradient(circle at 35% 35%, #52525b 0%, #2d2d30 45%, #18181b 80%, #09090b 100%);
   --center-btn-u2: linear-gradient(135deg, #2b2b2b 0%, #18181b 50%, #09090b 100%);
 
   /* LCD backlights */
@@ -27,10 +31,13 @@
   --active-blue: #0256d0;
   --active-blue-light: #3b82f6;
 
-  --chassis-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4), 
-                     0 0 40px rgba(0, 0, 0, 0.15), 
-                     inset 0 1px 3px rgba(255, 255, 255, 0.8),
-                     inset 0 -2px 5px rgba(0, 0, 0, 0.3);
+  --chassis-shadow: 
+    0 30px 60px -15px rgba(0, 0, 0, 0.65), 
+    0 15px 30px -10px rgba(0, 0, 0, 0.35),
+    0 0 25px rgba(0, 0, 0, 0.15),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.45),
+    inset 0 2px 3px rgba(255, 255, 255, 0.75),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.45);
   
   --bezel-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.4), 
                   0 1px 1px rgba(255, 255, 255, 0.3);
@@ -205,8 +212,11 @@ body {
   top: 0; left: 0; right: 0; bottom: 0;
   border-radius: 40px;
   pointer-events: none;
-  box-shadow: inset 0 2px 2px rgba(255, 255, 255, 0.4),
-              inset 0 -2px 4px rgba(0, 0, 0, 0.4);
+  box-shadow: 
+    inset 0 1.5px 1.5px rgba(255, 255, 255, 0.85),
+    inset 1.5px 1.5px 0.5px rgba(255, 255, 255, 0.45),
+    inset -1.5px -1.5px 2px rgba(0, 0, 0, 0.55),
+    inset 0 -3px 6px rgba(0, 0, 0, 0.35);
   z-index: 10;
 }
 
@@ -232,40 +242,56 @@ body {
 /* Theme Classes */
 .theme-silver {
   background: var(--chassis-bg-silver);
-  border: 1px solid #b1b1b1;
+  border: 1px solid #d4d4d8;
 }
 .theme-silver .click-wheel {
   background: var(--wheel-bg-silver);
-  box-shadow: 0 8px 16px rgba(0,0,0,0.15), inset 0 1px 3px rgba(255,255,255,0.7), inset 0 -3px 8px rgba(0,0,0,0.15);
+  box-shadow: 
+    0 10px 20px rgba(0, 0, 0, 0.12), 
+    inset 0 1px 3px rgba(255, 255, 255, 0.95), 
+    inset 0 -3px 8px rgba(0, 0, 0, 0.12), 
+    inset 0 6px 12px rgba(0, 0, 0, 0.08);
 }
 .theme-silver .wheel-btn {
   color: var(--wheel-text-silver);
 }
 .theme-silver .select-button {
   background: var(--center-btn-silver);
-  box-shadow: inset 0 1px 2px #ffffff, 0 3px 6px rgba(0,0,0,0.15);
+  box-shadow: 
+    inset 0 1.5px 2px rgba(255, 255, 255, 0.95), 
+    inset 0 -1.5px 2px rgba(0, 0, 0, 0.25), 
+    0 4px 8px rgba(0, 0, 0, 0.15), 
+    inset 0 0 5px rgba(0, 0, 0, 0.08);
 }
 .theme-silver .select-button:active {
-  box-shadow: inset 0 2px 5px rgba(0,0,0,0.3);
+  box-shadow: inset 0 2.5px 6px rgba(0, 0, 0, 0.35);
 }
 
 .theme-black {
   background: var(--chassis-bg-black);
-  border: 1px solid #1a1a1a;
+  border: 1px solid #27272a;
 }
 .theme-black .click-wheel {
   background: var(--wheel-bg-black);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.4), inset 0 1px 2px rgba(255,255,255,0.05), inset 0 -4px 10px rgba(0,0,0,0.5);
+  box-shadow: 
+    0 12px 24px rgba(0, 0, 0, 0.45), 
+    inset 0 1px 2px rgba(255, 255, 255, 0.12), 
+    inset 0 -4px 10px rgba(0, 0, 0, 0.6), 
+    inset 0 6px 12px rgba(0, 0, 0, 0.5);
 }
 .theme-black .wheel-btn {
   color: var(--wheel-text-black);
 }
 .theme-black .select-button {
   background: var(--center-btn-black);
-  box-shadow: inset 0 1px 2px rgba(255,255,255,0.08), 0 3px 6px rgba(0,0,0,0.3);
+  box-shadow: 
+    inset 0 1.5px 2px rgba(255, 255, 255, 0.18), 
+    inset 0 -1.5px 2px rgba(0, 0, 0, 0.65), 
+    0 4px 8px rgba(0, 0, 0, 0.4), 
+    inset 0 0 5px rgba(0, 0, 0, 0.35);
 }
 .theme-black .select-button:active {
-  box-shadow: inset 0 2px 5px rgba(0,0,0,0.5);
+  box-shadow: inset 0 2.5px 6px rgba(0, 0, 0, 0.65);
 }
 
 .theme-u2 {
