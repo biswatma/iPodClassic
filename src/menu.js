@@ -533,7 +533,7 @@ class IpodMenuEngine {
         const isNav = item.type === 'submenu' || item.type === 'custom' || item.type === 'contact' || item.type === 'artist' || item.type === 'album';
         li.innerHTML = `
           <span>${item.label}</span>
-          ${isNav ? '<span class="chevron">▶</span>' : ''}
+          ${isNav ? '<span class="chevron"><svg class="chevron-svg" viewBox="0 0 24 24" width="8" height="8"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z" fill="currentColor"/></svg></span>' : ''}
         `;
         listContainer.appendChild(li);
       });

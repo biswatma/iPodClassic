@@ -437,8 +437,15 @@ body {
 }
 
 .menu-item .chevron {
-  font-size: 11px;
-  color: rgba(0,0,0,0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(0, 0, 0, 0.4);
+}
+
+.chevron-svg {
+  display: block;
+  fill: currentColor;
 }
 
 /* Scrolling/Selected state */
@@ -985,6 +992,16 @@ body {
   letter-spacing: 0.5px;
   pointer-events: none; /* gesture is handled by the wheel container */
   transition: transform 0.05s ease, opacity 0.05s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wheel-icon {
+  display: block;
+  width: 13px;
+  height: 13px;
+  fill: currentColor;
 }
 
 .wheel-btn-top {
@@ -997,21 +1014,18 @@ body {
   left: 18px;
   top: 50%;
   transform: translateY(-50%);
-  font-size: 14px;
 }
 
 .wheel-btn-right {
   right: 18px;
   top: 50%;
   transform: translateY(-50%);
-  font-size: 14px;
 }
 
 .wheel-btn-bottom {
   bottom: 18px;
   left: 50%;
   transform: translateX(-50%);
-  font-size: 12px;
 }
 
 /* Tactical responsive states when clicking specific regions */
