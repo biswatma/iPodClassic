@@ -1,0 +1,1136 @@
+/* ==========================================================================
+   iPod Classic Premium Style Sheet
+   ========================================================================== */
+
+:root {
+  --chassis-bg-silver: radial-gradient(circle at 50% 30%, #f3f3f3 0%, #e2e2e2 45%, #cccccc 85%, #b1b1b1 100%);
+  --chassis-bg-black: radial-gradient(circle at 50% 30%, #3a3a3a 0%, #2b2b2b 45%, #1c1c1c 85%, #0f0f0f 100%);
+  --chassis-bg-u2: radial-gradient(circle at 50% 30%, #252525 0%, #161616 50%, #0d0d0d 85%, #050505 100%);
+
+  --wheel-bg-silver: radial-gradient(circle at 50% 50%, #ffffff 0%, #f9f9f9 50%, #ececec 100%);
+  --wheel-bg-black: radial-gradient(circle at 50% 50%, #222222 0%, #1c1c1c 50%, #121212 100%);
+  --wheel-bg-u2: radial-gradient(circle at 50% 50%, #f31c26 0%, #dc0f17 50%, #be060d 100%);
+
+  --wheel-text-silver: #8a8a8f;
+  --wheel-text-black: #8e8e93;
+  --wheel-text-u2: #ffffff;
+
+  --center-btn-silver: linear-gradient(135deg, #f0f0f0 0%, #d4d4d8 50%, #a1a1aa 100%);
+  --center-btn-black: linear-gradient(135deg, #3f3f46 0%, #27272a 50%, #18181b 100%);
+  --center-btn-u2: linear-gradient(135deg, #2b2b2b 0%, #18181b 50%, #09090b 100%);
+
+  /* LCD backlights */
+  --lcd-bg-blue: linear-gradient(to bottom, #dbeafe 0%, #93c5fd 60%, #60a5fa 100%);
+  --lcd-bg-green: linear-gradient(to bottom, #ecfdf5 0%, #a7f3d0 60%, #34d399 100%);
+  --lcd-bg-classic: linear-gradient(to bottom, #f3f4f6 0%, #d1d5db 60%, #9ca3af 100%);
+
+  --active-blue: #0256d0;
+  --active-blue-light: #3b82f6;
+
+  --chassis-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4), 
+                     0 0 40px rgba(0, 0, 0, 0.15), 
+                     inset 0 1px 3px rgba(255, 255, 255, 0.8),
+                     inset 0 -2px 5px rgba(0, 0, 0, 0.3);
+  
+  --bezel-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.4), 
+                  0 1px 1px rgba(255, 255, 255, 0.3);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background-color: #0b0f19;
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(31, 41, 55, 0.5) 0, transparent 50%), 
+    radial-gradient(at 50% 0%, rgba(17, 24, 39, 0.9) 0, transparent 50%), 
+    radial-gradient(at 100% 0%, rgba(31, 41, 55, 0.5) 0, transparent 50%),
+    repeating-linear-gradient(45deg, rgba(0, 0, 0, 0.1) 0px, rgba(0, 0, 0, 0.1) 2px, transparent 2px, transparent 10px);
+  color: #f3f4f6;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-x: hidden;
+  position: relative;
+  padding: 20px;
+}
+
+/* Ambient glow in background dynamic */
+.ambient-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(96, 165, 250, 0.15) 0%, rgba(96, 165, 250, 0.03) 50%, transparent 100%);
+  z-index: 1;
+  pointer-events: none;
+  border-radius: 50%;
+  transition: background 1s ease;
+}
+
+/* App Wrapper Container */
+.app-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 60px;
+  z-index: 2;
+  max-width: 1100px;
+  width: 100%;
+}
+
+/* Side Instruction Panel */
+.instruction-panel {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+  padding: 30px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  max-width: 440px;
+}
+
+.instruction-panel h1 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 5px;
+}
+
+.instruction-panel .subtitle {
+  color: #94a3b8;
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+  letter-spacing: 0.5px;
+}
+
+.feature-badge {
+  display: inline-block;
+  background: rgba(59, 130, 246, 0.15);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  color: #93c5fd;
+  font-size: 0.8rem;
+  font-weight: 500;
+  padding: 4px 10px;
+  border-radius: 12px;
+  margin-right: 8px;
+  margin-bottom: 15px;
+}
+
+.controls-guide {
+  margin-top: 15px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 15px;
+}
+
+.controls-guide h3 {
+  font-size: 1.1rem;
+  color: #f1f5f9;
+  margin-bottom: 10px;
+}
+
+.controls-guide ul {
+  list-style: none;
+}
+
+.controls-guide li {
+  font-size: 0.9rem;
+  color: #94a3b8;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+
+.controls-guide li strong {
+  color: #cbd5e1;
+}
+
+.drag-zone-box {
+  margin-top: 25px;
+  background: rgba(59, 130, 246, 0.05);
+  border: 2px dashed rgba(59, 130, 246, 0.3);
+  border-radius: 16px;
+  padding: 20px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.drag-zone-box:hover {
+  background: rgba(59, 130, 246, 0.1);
+  border-color: rgba(59, 130, 246, 0.5);
+}
+
+.drag-icon {
+  font-size: 2rem;
+  margin-bottom: 8px;
+  animation: bounce 2s infinite ease-in-out;
+}
+
+/* ==========================================================================
+   iPod Physical Chassis Design (Bezel, Screen, Click Wheel)
+   ========================================================================== */
+
+.ipod-chassis {
+  width: 360px;
+  height: 600px;
+  border-radius: 40px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px 22px 25px 22px;
+  box-shadow: var(--chassis-shadow);
+  transition: background 0.5s ease;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+/* Elegant metallic finish overlays */
+.ipod-chassis::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  border-radius: 40px;
+  pointer-events: none;
+  box-shadow: inset 0 2px 2px rgba(255, 255, 255, 0.4),
+              inset 0 -2px 4px rgba(0, 0, 0, 0.4);
+  z-index: 10;
+}
+
+/* Dynamic reflection swipe */
+.chassis-shine {
+  position: absolute;
+  top: -100px;
+  left: -200px;
+  width: 500px;
+  height: 800px;
+  background: linear-gradient(110deg, 
+    rgba(255, 255, 255, 0) 30%, 
+    rgba(255, 255, 255, 0.05) 45%, 
+    rgba(255, 255, 255, 0.08) 50%, 
+    rgba(255, 255, 255, 0.05) 55%, 
+    rgba(255, 255, 255, 0) 70%
+  );
+  transform: rotate(-15deg);
+  pointer-events: none;
+  z-index: 9;
+}
+
+/* Theme Classes */
+.theme-silver {
+  background: var(--chassis-bg-silver);
+  border: 1px solid #b1b1b1;
+}
+.theme-silver .click-wheel {
+  background: var(--wheel-bg-silver);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.15), inset 0 1px 3px rgba(255,255,255,0.7), inset 0 -3px 8px rgba(0,0,0,0.15);
+}
+.theme-silver .wheel-btn {
+  color: var(--wheel-text-silver);
+}
+.theme-silver .select-button {
+  background: var(--center-btn-silver);
+  box-shadow: inset 0 1px 2px #ffffff, 0 3px 6px rgba(0,0,0,0.15);
+}
+.theme-silver .select-button:active {
+  box-shadow: inset 0 2px 5px rgba(0,0,0,0.3);
+}
+
+.theme-black {
+  background: var(--chassis-bg-black);
+  border: 1px solid #1a1a1a;
+}
+.theme-black .click-wheel {
+  background: var(--wheel-bg-black);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.4), inset 0 1px 2px rgba(255,255,255,0.05), inset 0 -4px 10px rgba(0,0,0,0.5);
+}
+.theme-black .wheel-btn {
+  color: var(--wheel-text-black);
+}
+.theme-black .select-button {
+  background: var(--center-btn-black);
+  box-shadow: inset 0 1px 2px rgba(255,255,255,0.08), 0 3px 6px rgba(0,0,0,0.3);
+}
+.theme-black .select-button:active {
+  box-shadow: inset 0 2px 5px rgba(0,0,0,0.5);
+}
+
+.theme-u2 {
+  background: var(--chassis-bg-u2);
+  border: 1px solid #111;
+}
+.theme-u2 .click-wheel {
+  background: var(--wheel-bg-u2);
+  box-shadow: 0 8px 22px rgba(0,0,0,0.5), inset 0 1px 3px rgba(255,255,255,0.2), inset 0 -4px 12px rgba(0,0,0,0.6);
+}
+.theme-u2 .wheel-btn {
+  color: var(--wheel-text-u2);
+  font-weight: 600;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.4);
+}
+.theme-u2 .select-button {
+  background: var(--center-btn-u2);
+  box-shadow: inset 0 1px 2px rgba(255,255,255,0.08), 0 3px 6px rgba(0,0,0,0.4);
+}
+.theme-u2 .select-button:active {
+  box-shadow: inset 0 2px 5px rgba(0,0,0,0.6);
+}
+
+/* ==========================================================================
+   Screen Housing
+   ========================================================================== */
+
+.ipod-screen-bezel {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  background-color: #000000;
+  border-radius: 12px;
+  padding: 10px;
+  box-shadow: var(--bezel-shadow);
+  position: relative;
+  overflow: hidden;
+  z-index: 5;
+}
+
+.screen-glass-reflection {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.02) 40%, rgba(255,255,255,0) 41%);
+  pointer-events: none;
+  z-index: 12;
+  border-radius: 8px;
+}
+
+.ipod-screen {
+  width: 100%;
+  height: 100%;
+  border-radius: 6px;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.4);
+  font-family: 'Inter', sans-serif;
+  color: #111827;
+  font-weight: 500;
+  background: var(--lcd-bg-blue);
+  transition: background 0.3s ease;
+}
+
+/* Screen Backlight Timer states */
+.ipod-screen.backlight-off {
+  background: var(--lcd-bg-classic) !important;
+  filter: brightness(0.65) contrast(1.1);
+}
+
+/* ==========================================================================
+   iPod UI Elements (Status bar, menus)
+   ========================================================================== */
+
+.status-bar {
+  height: 22px;
+  background: linear-gradient(to bottom, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0.2) 100%);
+  border-bottom: 1px solid rgba(0,0,0,0.18);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+}
+
+.status-title {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-weight: 700;
+}
+
+.status-right {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.status-icon {
+  font-size: 10px;
+}
+
+/* Main screen body split layout */
+.screen-body {
+  flex: 1;
+  display: flex;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Left panel: hierarchical items */
+.menu-list-panel {
+  width: 50%;
+  height: 100%;
+  border-right: 1px solid rgba(0, 0, 0, 0.12);
+  background: rgba(255, 255, 255, 0.55);
+  display: flex;
+  flex-direction: column;
+  overflow-y: hidden;
+}
+
+.menu-list {
+  list-style: none;
+  width: 100%;
+}
+
+.menu-item {
+  height: 25px;
+  padding: 0 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  font-weight: 600;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: #1f2937;
+  transition: background 0.05s ease;
+}
+
+.menu-item .chevron {
+  font-size: 11px;
+  color: rgba(0,0,0,0.4);
+}
+
+/* Scrolling/Selected state */
+.menu-item.selected {
+  background: var(--active-blue);
+  background: linear-gradient(to bottom, var(--active-blue-light) 0%, var(--active-blue) 100%);
+  color: #ffffff;
+}
+
+.menu-item.selected .chevron {
+  color: #ffffff;
+}
+
+/* Right panel: dynamic visualizer */
+.preview-panel {
+  width: 50%;
+  height: 100%;
+  background: #ffffff;
+  position: relative;
+  overflow: hidden;
+}
+
+.preview-content {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s ease, visibility 0.25s;
+  background: #ffffff;
+}
+
+.preview-content.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.preview-logo {
+  font-size: 3rem;
+  color: #9ca3af;
+  margin-bottom: 5px;
+  text-shadow: 0 1px 1px #fff;
+}
+
+.preview-sub {
+  font-size: 15px;
+  font-weight: 700;
+  color: #4b5563;
+}
+
+.preview-details {
+  font-size: 11px;
+  color: #9ca3af;
+  margin-top: 4px;
+}
+
+/* Cover Art Fallback (Music) */
+.album-art-fallback {
+  width: 90px;
+  height: 90px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.15), inset 0 2px 4px rgba(255,255,255,0.3);
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  border: 1px solid rgba(0,0,0,0.1);
+}
+
+.vinyl-disc {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #333333 0%, #111111 40%, #000 41%, #222 42%, #000 65%, #222 75%, #000 100%);
+  border: 1px solid rgba(255,255,255,0.15);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0.15;
+  transition: transform 0.1s linear;
+}
+
+.art-label {
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 700;
+  text-align: center;
+  padding: 0 5px;
+  word-break: break-word;
+  z-index: 2;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+}
+
+/* Battery health */
+.battery-preview-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.large-battery {
+  width: 75px;
+  height: 36px;
+  border: 3px solid #374151;
+  border-radius: 8px;
+  padding: 2px;
+  position: relative;
+}
+
+.large-battery::after {
+  content: '';
+  position: absolute;
+  right: -7px;
+  top: 9px;
+  width: 4px;
+  height: 12px;
+  background: #374151;
+  border-radius: 0 3px 3px 0;
+}
+
+.battery-level {
+  height: 100%;
+  background: linear-gradient(to bottom, #10b981 0%, #059669 100%);
+  border-radius: 3px;
+  box-shadow: inset 0 1px 1px rgba(255,255,255,0.3);
+}
+
+.battery-percentage {
+  font-size: 13px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.battery-subtext {
+  font-size: 10px;
+  color: #6b7280;
+}
+
+/* Retro Analog Clock view */
+.retro-clock-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.analog-clock {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 3px solid #374151;
+  background: #ffffff;
+  position: relative;
+  box-shadow: inset 0 2px 5px rgba(0,0,0,0.1), 0 4px 8px rgba(0,0,0,0.05);
+}
+
+.clock-hand {
+  position: absolute;
+  bottom: 50%;
+  left: 50%;
+  transform-origin: bottom center;
+  background-color: #111827;
+  border-radius: 4px;
+}
+
+.hour-hand {
+  width: 3px;
+  height: 22px;
+  margin-left: -1.5px;
+  background-color: #1f2937;
+}
+
+.minute-hand {
+  width: 2px;
+  height: 32px;
+  margin-left: -1px;
+  background-color: #4b5563;
+}
+
+.second-hand {
+  width: 1px;
+  height: 34px;
+  margin-left: -0.5px;
+  background-color: #ef4444;
+}
+
+.clock-center {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #ef4444;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 1px solid #ffffff;
+}
+
+.digital-clock-time {
+  font-size: 12px;
+  font-weight: 700;
+  color: #374151;
+}
+
+/* ==========================================================================
+   Full Screen View (Now Playing, Custom Screens, Games)
+   ========================================================================== */
+
+.full-screen-view {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: #ffffff;
+  display: none;
+  flex-direction: column;
+  padding: 12px;
+  overflow: hidden;
+  z-index: 10;
+}
+
+.full-screen-view.active {
+  display: flex;
+}
+
+/* Now Playing screen layout details */
+.now-playing-layout {
+  display: flex;
+  gap: 15px;
+  height: 100%;
+  align-items: center;
+}
+
+.player-cover {
+  width: 110px;
+  height: 110px;
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.player-cover .album-art-fallback {
+  width: 110px;
+  height: 110px;
+}
+
+.player-cover .vinyl-disc {
+  width: 100px;
+  height: 100px;
+  opacity: 0.12;
+}
+
+.player-details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 0; /* allows text truncation inside flex item */
+}
+
+.song-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #111827;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 2px;
+}
+
+.song-artist {
+  font-size: 12px;
+  color: #4b5563;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 1px;
+}
+
+.song-album {
+  font-size: 11px;
+  color: #9ca3af;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 8px;
+}
+
+.track-count {
+  font-size: 10px;
+  color: #9ca3af;
+  margin-bottom: 10px;
+}
+
+/* Progress bar */
+.progress-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+
+.time-elapsed, .time-remaining {
+  font-size: 9px;
+  color: #4b5563;
+  width: 25px;
+  font-family: 'Share Tech Mono', monospace;
+}
+
+.time-remaining {
+  text-align: right;
+}
+
+.progress-bar-bg {
+  flex: 1;
+  height: 8px;
+  background: #e5e7eb;
+  border-radius: 4px;
+  border: 1px solid rgba(0,0,0,0.06);
+  position: relative;
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(to bottom, var(--active-blue-light) 0%, var(--active-blue) 100%);
+  width: 0%;
+  border-radius: 3px;
+}
+
+/* Volume Overlay on Now Playing screen */
+.volume-overlay {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  border-radius: 20px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  gap: 8px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s;
+  z-index: 15;
+}
+
+.volume-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.volume-icon {
+  font-size: 11px;
+}
+
+.volume-bar-bg {
+  flex: 1;
+  height: 6px;
+  background: #e5e7eb;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.volume-bar-fill {
+  height: 100%;
+  background: linear-gradient(to bottom, #10b981 0%, #059669 100%);
+  width: 50%;
+}
+
+/* Extras Screens (Contacts list, Calendar sheet) */
+#custom-screen-content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.retro-title-header {
+  font-size: 14px;
+  font-weight: 700;
+  text-align: center;
+  border-bottom: 2px solid #374151;
+  padding-bottom: 4px;
+  margin-bottom: 10px;
+}
+
+/* Calendar styling */
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+  text-align: center;
+  font-size: 9px;
+}
+
+.calendar-day-name {
+  font-weight: 700;
+  color: #ef4444;
+}
+
+.calendar-day {
+  padding: 2px;
+  border-radius: 3px;
+  color: #374151;
+}
+
+.calendar-day.today {
+  background-color: var(--active-blue);
+  color: white;
+  font-weight: 700;
+}
+
+/* Contacts styling */
+.contact-item {
+  padding: 4px 8px;
+  font-size: 12px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+/* Stopwatch styling */
+.stopwatch-layout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  gap: 15px;
+}
+
+.stopwatch-time {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 30px;
+  font-weight: 700;
+  color: #111827;
+  letter-spacing: 1px;
+  background: #f3f4f6;
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.06);
+}
+
+.stopwatch-controls {
+  font-size: 10px;
+  color: #6b7280;
+  text-align: center;
+  line-height: 1.5;
+}
+
+/* ==========================================================================
+   Games Canvas Screen
+   ========================================================================== */
+
+#game-view {
+  background: #111827;
+  padding: 0;
+  justify-content: space-between;
+}
+
+#game-canvas {
+  width: 100%;
+  height: 175px;
+  background: #000000;
+  display: block;
+}
+
+#game-hud {
+  height: 25px;
+  background: #1f2937;
+  color: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px;
+  font-size: 10px;
+  font-weight: 600;
+  border-top: 1px solid #374151;
+}
+
+.hud-msg {
+  color: #f59e0b;
+}
+
+/* ==========================================================================
+   Click Wheel Physical Design
+   ========================================================================== */
+
+.click-wheel-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 10px 0;
+}
+
+.click-wheel {
+  width: 210px;
+  height: 210px;
+  border-radius: 50%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: grab;
+  touch-action: none;
+}
+
+.click-wheel:active {
+  cursor: grabbing;
+}
+
+/* Embossed ridges for click wheel */
+.click-wheel::after {
+  content: '';
+  position: absolute;
+  width: 206px;
+  height: 206px;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  pointer-events: none;
+}
+
+/* Directional click wheel buttons */
+.wheel-btn {
+  position: absolute;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  pointer-events: none; /* gesture is handled by the wheel container */
+  transition: transform 0.05s ease, opacity 0.05s;
+}
+
+.wheel-btn-top {
+  top: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.wheel-btn-left {
+  left: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 14px;
+}
+
+.wheel-btn-right {
+  right: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 14px;
+}
+
+.wheel-btn-bottom {
+  bottom: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 12px;
+}
+
+/* Tactical responsive states when clicking specific regions */
+.click-wheel.press-top .wheel-btn-top { opacity: 0.6; transform: translateX(-50%) scale(0.95); }
+.click-wheel.press-left .wheel-btn-left { opacity: 0.6; transform: translateY(-50%) scale(0.95); }
+.click-wheel.press-right .wheel-btn-right { opacity: 0.6; transform: translateY(-50%) scale(0.95); }
+.click-wheel.press-bottom .wheel-btn-bottom { opacity: 0.6; transform: translateX(-50%) scale(0.95); }
+
+/* Central Select Button */
+.select-button {
+  width: 66px;
+  height: 66px;
+  border-radius: 50%;
+  border: 1px solid rgba(0,0,0,0.15);
+  cursor: pointer;
+  z-index: 10;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 0.05s ease;
+}
+
+.select-button:active {
+  transform: scale(0.96);
+}
+
+/* ==========================================================================
+   Utility Overlays (Drag & Drop, animations)
+   ========================================================================== */
+
+/* Full Drag Overlay when uploading files */
+.drag-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(11, 15, 25, 0.9);
+  backdrop-filter: blur(8px);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.drag-overlay.active {
+  display: flex;
+  opacity: 1;
+}
+
+.drag-box {
+  background: rgba(255,255,255,0.05);
+  border: 3px dashed var(--active-blue-light);
+  border-radius: 30px;
+  padding: 40px;
+  max-width: 500px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+}
+
+.drag-large-icon {
+  font-size: 4rem;
+  margin-bottom: 20px;
+  animation: float 3s infinite ease-in-out;
+}
+
+.drag-box h2 {
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+}
+
+.drag-box p {
+  color: #94a3b8;
+  font-size: 1rem;
+}
+
+.footer-credit {
+  position: absolute;
+  bottom: 20px;
+  font-size: 11px;
+  color: #4b5563;
+  text-align: center;
+  z-index: 2;
+}
+
+/* Spinner and keyframe effects */
+.animate-spin {
+  animation: spin 8s linear infinite;
+}
+
+.animate-spin.paused {
+  animation-play-state: paused;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(5deg); }
+}
+
+/* Scrolling Title effect inside player */
+.scroll-text {
+  position: relative;
+  animation: scrollText 12s linear infinite;
+}
+
+/* Custom Scrollbars inside panels */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(0,0,0,0.05);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(0,0,0,0.15);
+  border-radius: 2px;
+}
+
+/* Responsive Scaling for smaller displays */
+@media (max-width: 880px) {
+  body {
+    padding: 10px;
+  }
+  .app-container {
+    flex-direction: column-reverse;
+    gap: 30px;
+    align-items: center;
+  }
+  .instruction-panel {
+    max-width: 360px;
+    padding: 20px;
+  }
+  .instruction-panel h1 {
+    font-size: 1.8rem;
+  }
+  .ipod-chassis {
+    transform: scale(0.95);
+    margin-bottom: -15px;
+  }
+}

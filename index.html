@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>iPod Classic - Retro Nostalgia</title>
+  <meta name="description" content="A nostalgic, high-fidelity iPod Classic simulator with real circular click-wheel interaction, games, mechanical tick audio feedback, and customizable themes.">
+  <!-- Modern aesthetic typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Dynamic backdrop reflection / ambient light -->
+  <div class="ambient-glow" id="ambient-glow"></div>
+
+  <div class="app-container">
+    <!-- Instruction box on the side (retro instructions look) -->
+    <div class="instruction-panel">
+      <h1>iPod Classic</h1>
+      <p class="subtitle">160GB • Retro Edition</p>
+      <div class="feature-badge">Web Audio Clicker</div>
+      <div class="feature-badge">Drag & Drop Music</div>
+      <div class="feature-badge">3 Retro Games</div>
+
+      <div class="controls-guide">
+        <h3>How to Interact:</h3>
+        <ul>
+          <li><strong>Scroll Wheel:</strong> Click and drag your mouse/finger in a circle around the white/black wheel to scroll up/down or adjust volume!</li>
+          <li><strong>MENU Button:</strong> Click the top of the wheel to go back.</li>
+          <li><strong>⏮ / ⏭ Buttons:</strong> Click left/right to skip tracks.</li>
+          <li><strong>⏯ Button:</strong> Click bottom to play/pause.</li>
+          <li><strong>Center Select Button:</strong> Confirm choices or start games.</li>
+        </ul>
+      </div>
+
+      <div class="drag-zone-box" id="drop-zone-instruction">
+        <div class="drag-icon">🎵</div>
+        <p><strong>Drag & Drop MP3s</strong> anywhere on the screen to sync your own music library instantly!</p>
+      </div>
+    </div>
+
+    <!-- The actual 3D iPod Classic Bezel -->
+    <div class="ipod-chassis theme-silver" id="ipod">
+      <!-- Metallic glossy reflection overlay -->
+      <div class="chassis-shine"></div>
+
+      <!-- Back engraving visual (virtual depth) -->
+      <div class="ipod-screen-bezel">
+        <div class="screen-glass-reflection"></div>
+        <div class="ipod-screen" id="ipod-screen">
+          
+          <!-- Status Bar -->
+          <div class="status-bar" id="status-bar">
+            <span class="status-icon" id="play-status-icon">▶</span>
+            <span class="status-title" id="status-title">iPod</span>
+            <div class="status-right">
+              <span class="status-icon" id="battery-icon">🔋</span>
+            </div>
+          </div>
+
+          <!-- Screen Main Display Area (Split-screen or Full) -->
+          <div class="screen-body" id="screen-body">
+            <!-- Left Side: Menu List -->
+            <div class="menu-list-panel" id="menu-list-panel">
+              <ul class="menu-list" id="menu-list">
+                <!-- Will be populated dynamically -->
+              </ul>
+            </div>
+
+            <!-- Right Side: Beautiful Dynamic Preview Panel -->
+            <div class="preview-panel" id="preview-panel">
+              <div class="preview-content active" id="preview-default">
+                <div class="preview-logo"></div>
+                <div class="preview-sub">iPod</div>
+                <div class="preview-details">160 GB</div>
+              </div>
+              
+              <!-- Cover Art Preview (Music) -->
+              <div class="preview-content" id="preview-cover-art">
+                <div class="album-art-fallback" id="preview-art-box">
+                  <div class="vinyl-disc"></div>
+                  <div class="art-label" id="preview-art-label">Music</div>
+                </div>
+              </div>
+
+              <!-- Battery Health Bevel -->
+              <div class="preview-content" id="preview-battery">
+                <div class="battery-preview-box">
+                  <div class="large-battery">
+                    <div class="battery-level" style="width: 85%;"></div>
+                  </div>
+                  <div class="battery-percentage">85% Charged</div>
+                  <div class="battery-subtext">Power: Internal Battery</div>
+                </div>
+              </div>
+
+              <!-- Retro Clock -->
+              <div class="preview-content" id="preview-clock">
+                <div class="retro-clock-box">
+                  <div class="analog-clock">
+                    <div class="clock-hand hour-hand" id="hand-hour"></div>
+                    <div class="clock-hand minute-hand" id="hand-minute"></div>
+                    <div class="clock-hand second-hand" id="hand-second"></div>
+                    <div class="clock-center"></div>
+                  </div>
+                  <div class="digital-clock-time" id="digital-clock-time">12:00 PM</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Full Screen View: Now Playing -->
+            <div class="full-screen-view" id="now-playing-view">
+              <div class="now-playing-layout">
+                <div class="player-cover">
+                  <div class="album-art-fallback" id="player-art-box">
+                    <div class="vinyl-disc animate-spin"></div>
+                    <span id="player-art-label">🎵</span>
+                  </div>
+                </div>
+                <div class="player-details">
+                  <div class="song-title scroll-text" id="player-song-title">Song Title</div>
+                  <div class="song-artist" id="player-song-artist">Artist Name</div>
+                  <div class="song-album" id="player-song-album">Album Name</div>
+                  <div class="track-count" id="player-track-count">1 of 12</div>
+                  
+                  <div class="progress-container">
+                    <span class="time-elapsed" id="player-time-elapsed">0:00</span>
+                    <div class="progress-bar-bg">
+                      <div class="progress-bar-fill" id="player-progress-fill"></div>
+                    </div>
+                    <span class="time-remaining" id="player-time-remaining">-0:00</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Volume Pop-up Overlay (Controlled by Wheel scroll on Player screen) -->
+              <div class="volume-overlay" id="volume-overlay">
+                <span class="volume-icon">🔊</span>
+                <div class="volume-bar-bg">
+                  <div class="volume-bar-fill" id="volume-bar-fill"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Full Screen View: Custom Screens (Contacts, Calendar, Canvas Games, etc.) -->
+            <div class="full-screen-view" id="custom-screen-view">
+              <!-- Custom content injected here (Stopwatch, Calendar grid, Contacts list) -->
+              <div id="custom-screen-content"></div>
+            </div>
+
+            <!-- Full Screen View: Canvas Games -->
+            <div class="full-screen-view" id="game-view">
+              <canvas id="game-canvas" width="320" height="220"></canvas>
+              <div id="game-hud">
+                <div class="hud-score" id="game-score">Score: 0</div>
+                <div class="hud-lives" id="game-lives">Lives: 3</div>
+                <div class="hud-msg" id="game-message">Press Select to Play</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Click Wheel Component -->
+      <div class="click-wheel-container">
+        <div class="click-wheel" id="click-wheel">
+          <!-- Directional Labels on the Click Wheel -->
+          <div class="wheel-btn wheel-btn-top" id="btn-menu">MENU</div>
+          <div class="wheel-btn wheel-btn-left" id="btn-prev">⏮</div>
+          <div class="wheel-btn wheel-btn-right" id="btn-next">⏭</div>
+          <div class="wheel-btn wheel-btn-bottom" id="btn-play">⏯</div>
+          
+          <!-- Center Selector Button -->
+          <button class="select-button" id="btn-select" aria-label="Select"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dynamic drag and drop overlay indicator -->
+  <div class="drag-overlay" id="drag-overlay">
+    <div class="drag-box">
+      <div class="drag-large-icon">🎵</div>
+      <h2>Syncing Nostalgia</h2>
+      <p>Drop your MP3 audio files here to copy them into the iPod's library</p>
+    </div>
+  </div>
+
+  <!-- Sound effect tick toggle on background click -->
+  <div class="footer-credit">
+    Created for nostalgia lovers. iPod is a trademark of Apple Inc.
+  </div>
+
+  <!-- Launch Module -->
+  <script type="module" src="src/app.js"></script>
+</body>
+</html>
