@@ -39,6 +39,15 @@ class IpodClickWheel {
     this.setupButtonEvents();
   }
 
+  // Soft vibration feedback
+  vibrate(ms) {
+    if (navigator.vibrate) {
+      try {
+        navigator.vibrate(ms);
+      } catch (err) {}
+    }
+  }
+
   // Mathematics of circular tracking
   setupRotationTracking() {
     const handlePointerDown = (e) => {
@@ -84,12 +93,14 @@ class IpodClickWheel {
       // Scroll Down (Clockwise)
       if (this.accumulatedAngle >= this.scrollThreshold) {
         audioEngine.playTick();
+        this.vibrate(8);
         if (this.onScrollDown) this.onScrollDown();
         this.accumulatedAngle -= this.scrollThreshold;
       }
       // Scroll Up (Counter-Clockwise)
       else if (this.accumulatedAngle <= -this.scrollThreshold) {
         audioEngine.playTick();
+        this.vibrate(8);
         if (this.onScrollUp) this.onScrollUp();
         this.accumulatedAngle += this.scrollThreshold;
       }
@@ -125,6 +136,7 @@ class IpodClickWheel {
     this.centerButton.addEventListener('click', (e) => {
       e.stopPropagation();
       audioEngine.playBtnClick();
+      this.vibrate(25);
       if (this.onSelectClick) this.onSelectClick();
     });
 
@@ -156,18 +168,22 @@ class IpodClickWheel {
       if (angle >= -0.75 * pi && angle < -0.25 * pi) {
         animateClick('press-top');
         audioEngine.playBtnClick();
+        this.vibrate(25);
         if (this.onMenuClick) this.onMenuClick();
       } else if (angle >= -0.25 * pi && angle < 0.25 * pi) {
         animateClick('press-right');
         audioEngine.playBtnClick();
+        this.vibrate(25);
         if (this.onNextClick) this.onNextClick();
       } else if (angle >= 0.25 * pi && angle < 0.75 * pi) {
         animateClick('press-bottom');
         audioEngine.playBtnClick();
+        this.vibrate(25);
         if (this.onPlayClick) this.onPlayClick();
       } else {
         animateClick('press-left');
         audioEngine.playBtnClick();
+        this.vibrate(25);
         if (this.onPrevClick) this.onPrevClick();
       }
     });

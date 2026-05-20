@@ -232,7 +232,7 @@ class IpodAudioEngine {
         isSynth: true,
         notes: daftMelody,
         tempo: 128,
-        artLabel: ' Discovery'
+        artLabel: '🎵 Discovery'
       },
       {
         id: 'built-in-clocks',
@@ -243,7 +243,7 @@ class IpodAudioEngine {
         isSynth: true,
         notes: clocksArp,
         tempo: 132,
-        artLabel: ' Clocks'
+        artLabel: '🎹 Clocks'
       },
       {
         id: 'built-in-gorillaz',
@@ -254,7 +254,7 @@ class IpodAudioEngine {
         isSynth: true,
         notes: feelGoodBass,
         tempo: 139,
-        artLabel: ' Demon Days'
+        artLabel: '🎸 Demon Days'
       }
     ];
 

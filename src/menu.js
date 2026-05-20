@@ -190,7 +190,7 @@ class IpodMenuEngine {
               <strong>Version:</strong> 1.0.3 Web Retro<br>
               <strong>Songs:</strong> ${audioEngine.getTracks().length}<br>
               <strong>Serial No:</strong> 8U6041H9Z2U<br><br>
-              <div style="text-align: center; color: #ef4444; font-weight: 700;"> Designed by Apple in California</div>
+              <div style="text-align: center; color: #ef4444; font-weight: 700;">🍎 Designed by Apple in California</div>
             </div>
           `;
         }
@@ -534,7 +534,7 @@ class IpodMenuEngine {
       // Show cover art matching playing track details
       coverPreview.classList.add('active');
       document.getElementById('preview-art-box').style.background = this.getRandomGradient(selectedItem.label);
-      document.getElementById('preview-art-label').textContent = selectedItem.track.artLabel || ' Classic';
+      document.getElementById('preview-art-label').textContent = selectedItem.track.artLabel || 'iPod Classic';
     } 
     else if (selectedItem.target === 'extras') {
       clockPreview.classList.add('active');
