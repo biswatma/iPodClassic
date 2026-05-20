@@ -1112,25 +1112,74 @@ body {
   border-radius: 2px;
 }
 
-/* Responsive Scaling for smaller displays */
-@media (max-width: 880px) {
+/* ==========================================================================
+   Responsive Scaling & Mobile Optimization
+   ========================================================================== */
+
+/* Tablet & Intermediate Views (Stack iPod and instructions) */
+@media (min-width: 769px) and (max-width: 960px) {
   body {
-    padding: 10px;
+    padding: 20px 10px;
   }
   .app-container {
     flex-direction: column-reverse;
-    gap: 30px;
+    gap: 40px;
     align-items: center;
   }
   .instruction-panel {
-    max-width: 360px;
-    padding: 20px;
-  }
-  .instruction-panel h1 {
-    font-size: 1.8rem;
+    max-width: 500px;
+    width: 90%;
+    padding: 24px;
   }
   .ipod-chassis {
     transform: scale(0.95);
-    margin-bottom: -15px;
+    margin: 0;
   }
 }
+
+/* Mobile & iPhone Views (Only show the scaled iPod chassis, no other menus) */
+@media (max-width: 768px) {
+  body {
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .ambient-glow {
+    width: 100%;
+    height: 100%;
+  }
+
+  .instruction-panel {
+    display: none !important; /* Hide side menu entirely */
+  }
+
+  .footer-credit {
+    display: none !important; /* Hide credit text */
+  }
+
+  .app-container {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0;
+  }
+
+  .ipod-chassis {
+    /* Scale dynamically to fit the viewport width or height (aspect ratio 360x600) */
+    transform: scale(min(0.96, calc(96vw / 360), calc(96vh / 600)));
+    transform-origin: center center;
+    margin: 0;
+    flex-shrink: 0;
+  }
+}
+
